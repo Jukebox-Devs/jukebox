@@ -7,7 +7,7 @@ Created on Sun May 16 13:33:07 2021
 
 import discord
 from discord.ext import commands
-#Import countries.py
+from countries import allCountries
 
 bot = commands.Bot(command_prefix = "+")
 
@@ -19,6 +19,7 @@ async def _list(ctx, year: int):
         raise Exception("Year must be between 1900 and 2020")
     elif year % 10 != 0:
         raise Exception("Year must end in 0")
+    ctx.send("Countries in " + year + ":\n" + allCountries(year))
         
 
 @bot.command(name = "play") #Plays music based on command
