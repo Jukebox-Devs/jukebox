@@ -41,4 +41,4 @@ async def _list(ctx, year: int):
 async def _play(ctx):
     pass
 
-bot.run('ODQ0Nzc1NTk3NDk4ODI2ODMy.YKXUlQ.gehTTphc0f9hHC-lAT1F9juc-6A') 
+bot.run('token') 
