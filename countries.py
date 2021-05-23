@@ -164,11 +164,5 @@ def countriesList(year):
 
 
 def allCountries(year):
-    countriesArr = countriesList(year)
-    countriesStr = ""
-    
-    for country in countriesArr:
-        countriesStr += country
-        countriesStr += "\n"
-        
-    return countriesStr
+
+    return "\n".join(countriesList(year))
