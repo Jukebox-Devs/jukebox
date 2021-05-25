@@ -164,5 +164,12 @@ def countriesList(year):
 
 
 def allCountries(year):
-
     return "\n".join(countriesList(year))
+
+def countryExists(country, year):
+    countryList = countriesList(year)
+    exist = False
+    for item in countryList:
+        if item == country:
+            exist = True
+    return exist
