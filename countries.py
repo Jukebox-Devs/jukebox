@@ -164,7 +164,33 @@ def countriesList(year):
 
 
 def allCountries(year):
-    return "\n".join(countriesList(year))
+    pages = []
+    countries = countriesList(year)
+    
+    pages.append("\n".join(countries[0:20])) 
+    pages.append("\n".join(countries[20:40])) 
+    
+    if len(countries) <= 60:
+        pages.append("\n".join(countries[40:len(countries)]))
+    elif len(countries) <= 80:
+        pages.append("\n".join(countries[40:60]))
+        pages.append("\n".join(countries[60:len(countries)]))
+    elif len(countries) <= 100:
+        pages.append("\n".join(countries[40:60]))
+        pages.append("\n".join(countries[60:80]))
+        pages.append("\n".join(countries[80:len(countries)]))
+    elif len(countries) <= 120:
+        pages.append("\n".join(countries[40:60]))
+        pages.append("\n".join(countries[60:80]))
+        pages.append("\n".join(countries[80:100]))
+        pages.append("\n".join(countries[100:len(countries)]))
+    elif len(countries) <= 140:
+        pages.append("\n".join(countries[40:60]))
+        pages.append("\n".join(countries[60:80]))
+        pages.append("\n".join(countries[80:100]))
+        pages.append("\n".join(countries[100:120]))
+        pages.append("\n".join(countries[120:len(countries)])) #max pages = 7
+    return pages
 
 def countryExists(country, year):
     countryList = countriesList(year)
