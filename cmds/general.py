@@ -5,18 +5,136 @@ from countries import allCountries
 
 class general(Cog):
 
-    @commands.command(name="list")  # Pulls up list of countries for each decade
-    async def _list(self, ctx, year):
-        year = int(year)
-        try:
-            if year < 1900 or year > 2020:
-                raise Exception("Year must be between 1900 and 2020")
-            elif year % 10 != 0:
-                raise Exception("Year must end in 0")
-        except Exception as e:  # Other exceptions include MissingRequiredArgument and CommandNotFound
-            await ctx.send(e)
-        else:
-            await ctx.send("Countries in " + str(year) + ":\n" + allCountries(year))
+@client.command(name = "list") #Pulls up list of countries for each decade
+async def _list(ctx, year: int): 
+    try:
+        if year < 1900 or year > 2020:
+            raise Exception("Year must be between 1900 and 2020")
+        elif year % 10 != 0:
+            raise Exception("Year must end in 0")
+    except Exception as e: #Other exceptions include MissingRequiredArgument and BadArgument
+        await ctx.send(e)
+    else:
+        clist = allCountries(year)
+    
+        page1 = discord.Embed(
+            title = str(year) + "s Countries (1/" + str(len(clist)) + ")",
+            description = clist[0],
+            color = discord.Color.blue()
+        )
+        page2 = discord.Embed(
+            title = str(year) + "s Countries (2/" + str(len(clist)) + ")",
+            description = clist[1],
+            color = discord.Color.blue()
+        )
+        page3 = discord.Embed(
+            title = str(year) + "s Countries (3/" + str(len(clist)) + ")",
+            description = clist[2],
+            color = discord.Color.blue()
+        )
+        pages = [page1, page2, page3]
+        
+        if len(clist) == 4:
+            page4 = discord.Embed(
+                title = str(year) + "s Countries (4/" + str(len(clist)) + ")",
+                description = clist[3],
+                color = discord.Color.blue()
+            )
+            pages.append(page4)
+        elif len(clist) == 5:
+            page4 = discord.Embed(
+                title = str(year) + "s Countries (4/" + str(len(clist)) + ")",
+                description = clist[3],
+                color = discord.Color.blue()
+            )
+            pages.append(page4)
+            page5 = discord.Embed(
+                title = str(year) + "s Countries (5/" + str(len(clist)) + ")",
+                description = clist[4],
+                color = discord.Color.blue()
+            )
+            pages.append(page5)
+        elif len(clist) == 6:
+            page4 = discord.Embed(
+                title = str(year) + "s Countries (4/" + str(len(clist)) + ")",
+                description = clist[3],
+                color = discord.Color.blue()
+            )
+            pages.append(page4)
+            page5 = discord.Embed(
+                title = str(year) + "s Countries (5/" + str(len(clist)) + ")",
+                description = clist[4],
+                color = discord.Color.blue()
+            )
+            pages.append(page5)
+            page6 = discord.Embed(
+                title = str(year) + "s Countries (6/" + str(len(clist)) + ")",
+                description = clist[5],
+                color = discord.Color.blue()
+            )
+            pages.append(page6)
+        elif len(clist) == 7:
+            page4 = discord.Embed(
+                title = str(year) + "s Countries (4/" + str(len(clist)) + ")",
+                description = clist[3],
+                color = discord.Color.blue()
+            )
+            pages.append(page4)
+            page5 = discord.Embed(
+                title = str(year) + "s Countries (5/" + str(len(clist)) + ")",
+                description = clist[4],
+                color = discord.Color.blue()
+            )
+            pages.append(page5)
+            page6 = discord.Embed(
+                title = str(year) + "s Countries (6/" + str(len(clist)) + ")",
+                description = clist[5],
+                color = discord.Color.blue()
+            )
+            pages.append(page6)
+            page7 = discord.Embed(
+                title = str(year) + "s Countries (7/" + str(len(clist)) + ")",
+                description = clist[6],
+                color = discord.Color.blue()
+            )
+            pages.append(page7)
+            
+        
+        message = await ctx.send(embed = page1)
+        await message.add_reaction('⏮')
+        await message.add_reaction('◀')
+        await message.add_reaction('▶')
+        await message.add_reaction('⏭')
+    
+        def check(reaction, user):
+            return user == ctx.author
+    
+        i = 0
+        reaction = None
+    
+        while True:
+            if str(reaction) == '⏮':
+                i = 0
+                await message.edit(embed = pages[i])
+            elif str(reaction) == '◀':
+                if i > 0:
+                    i -= 1
+                    await message.edit(embed = pages[i])
+            elif str(reaction) == '▶':
+                if i < len(clist) - 1:
+                    i += 1
+                    await message.edit(embed = pages[i])
+            elif str(reaction) == '⏭':
+                i = len(clist) - 1
+                await message.edit(embed = pages[i])
+            
+            try:
+                reaction, user = await client.wait_for('reaction_add', timeout = 50.0, check = check)
+                await message.remove_reaction(reaction, user)
+            except:
+                break
+    
+        await message.clear_reactions()
 
     @commands.command(name="play")  # Plays music based on command
     async def _play(self, ctx):
