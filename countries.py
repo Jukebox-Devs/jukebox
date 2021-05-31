@@ -142,9 +142,9 @@ def countriesList(year):
                      "Uzbekistan", "Venezuela", "Vietnam", "Yugoslavia", "Zimbabwe"]
     elif year == 2000 or year == 2010 or year == 2020:
         countries = ["Afghanistan", "Albania", "Algeria", "Angola", "Argentina", "Armenia", "Australia", 
-                     "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belgium", 
-                     "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia", "Brazil", "Bolivia", "Bulgaria", 
-                     "Belarus", "Cambodia", "Cameroon", "Chad", "Chile", "China", "Colombia", "Congo", 
+                     "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", 
+                     "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia", "Brazil", "Bulgaria", 
+                     "Cambodia", "Cameroon", "Canada","Chad", "Chile", "China", "Colombia", "Congo", 
                      "Costa Rica", "Croatia", "Cuba", "Czech Republic", "Denmark", "Dominican Republic", 
                      "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Finland", 
                      "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Guatemala", 
@@ -156,10 +156,10 @@ def countriesList(year):
                      "Nicaragua", "Niger", "Nigeria", "Norway", "Pakistan", "Panama", "Paraguay", "Peru", 
                      "Philippines", "Poland", "Portugal", "Romania", "Russia", "Rwanda", "Saudi Arabia", 
                      "Senegal", "Serbia", "Singapore", "Slovakia", "Slovenia", "Somalia", "South Africa", 
-                     "Soviet Union", "Spain", "Sri Lanka", "Sudan", "Suriname", "Swaziland", "Sweden", 
-                     "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Trinidad and Tobago", 
-                     "Tunisia", "Turkey", "Turkmenistan", "Uganda", "Ukraine", "UAE", "United Kingdom", 
-                     "United States", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Yugoslavia", "Zimbabwe"]
+                     "Spain", "Sri Lanka", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", 
+                     "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Trinidad and Tobago", "Tunisia", "Turkey",
+                     "Turkmenistan", "Uganda", "Ukraine", "UAE", "United Kingdom", "United States", "Uruguay", 
+                     "Uzbekistan", "Venezuela", "Vietnam", "Zimbabwe"]
     return countries
 
 
