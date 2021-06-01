@@ -1,7 +1,8 @@
-#Finds music from musicbrainz based on what the user entered
+#Finds music from musicbrainz based on what the user entered (Maybe move it to countries.py)
 
 import os
 import musicbrainzngs
+import random
 
 
 musicbrainzngs.set_useragent(os, "0.7.1") #Creates useragent
@@ -35,9 +36,18 @@ abbreviations = {"Afghanistan": "AF", "Albania": "AL", "Algeria": "DZ", "Angola"
 "Yugoslavia": "YU", "Zimbabwe": "ZW"}
 
 
-def findSongs(country, year): #Finds songs on musicbrainz
-    songs = musicbrainzngs.search_releases(country = abbreviations[country], date = year)
-    return songs
-
-def queue(songs): #Prints out queue of songs and info about each that will be stored in a dictionary
-    pass 
+def queue(country, year): #Finds songs on musicbrainz and returns them
+    songs = []
+    lastYear = year + 10
+    if year == 2020:
+        lastYear = year + 2
+    for j in range(year, lastYear):
+        songsInfo = musicbrainzngs.search_releases(country = abbreviations[country], date = j, type = "Single")
+        for i in range(len(songsInfo["release-list"])):
+            songName = songsInfo["release-list"][i]["title"]
+            artistName = songsInfo["release-list"][i]["artist-credit"][0]["name"]
+            yearReleased = songsInfo["release-list"][i]["date"][0:4]
+            songDict = {"Song": songName, "Artist": artistName, "Year": yearReleased}
+            songs.append(songDict)
+    queueList = random.sample(songs, 40) #Modify 2nd number to change no. of songs in queue to be returned
+    return queueList 
