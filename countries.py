@@ -182,11 +182,9 @@ countriesArr = [{"year" : 1900, "countries" : ["Argentina", "Austria", "Belgium"
                      "Uzbekistan", "Venezuela", "Vietnam", "Zimbabwe"]}]
 
 def countriesList(year):
-    for arr in countriesArr:
-        if arr["year"] == year:
-            return arr["countries"]
-            break
-
+    indexVal = (year - 1900) / 10
+    cList = countriesArr[int(indexVal)]["countries"]
+    return cList
 
 def allCountries(year):
     pages = []
@@ -220,8 +218,4 @@ def allCountries(year):
 
 def countryExists(country, year):
     countryList = countriesList(year)
-    exist = False
-    for item in countryList:
-        if item == country:
-            exist = True
-    return exist
+    return country in countryList
